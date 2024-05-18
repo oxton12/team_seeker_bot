@@ -1002,7 +1002,7 @@ def main() -> None:
     application.add_handler(manage_team_handler, group=4)
 
     # Просмотр всех тем
-    manage_team_handler = ConversationHandler(
+    all_themes_handler = ConversationHandler(
         entry_points=[CommandHandler("themes", list_events),
                       CallbackQueryHandler(select_event_button, pattern="^return_to_themes#$")],
         states={
@@ -1014,10 +1014,10 @@ def main() -> None:
         fallbacks=[CommandHandler("cancel", cancel_themes),
                    MessageHandler(filters.COMMAND, cancel_any)],
         allow_reentry=True)
-    application.add_handler(manage_team_handler, group=5)
+    application.add_handler(all_themes_handler, group=5)
 
     # Удаление мероприятия
-    manage_team_handler = ConversationHandler(
+    delete_event_handler = ConversationHandler(
         entry_points=[CommandHandler("delete_event", list_user_events)],
         states={
             EVENT_NAME: [CallbackQueryHandler(confirm_delete_event)],
@@ -1027,7 +1027,7 @@ def main() -> None:
         fallbacks=[CommandHandler("cancel", cancel_delete_event),
                    MessageHandler(filters.COMMAND, cancel_any)],
         allow_reentry=True)
-    application.add_handler(manage_team_handler, group=6)
+    application.add_handler(delete_event_handler, group=6)
 
     save_timer = Thread(target=save_data)
     save_timer.daemon = True

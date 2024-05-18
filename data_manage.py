@@ -86,7 +86,7 @@ class Reader:
                 self.theme_df,
                 add_theme_df
             ], ignore_index=True)
-            self.theme_df[['event_hash', 'theme_hash']] = add_theme_df[['event_hash', 'theme_hash']].apply(pd.to_numeric)
+            self.theme_df[['event_hash', 'theme_hash']] = self.theme_df[['event_hash', 'theme_hash']].apply(pd.to_numeric)
         os.remove(file_url)
         return errors
 

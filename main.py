@@ -45,7 +45,6 @@ async def cancel_any(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
 
 
 async def create_event(update: Update, context: CallbackContext) -> int:
-    raise AttributeError
     await remove_buttons(context.chat_data)
     await update.message.reply_text("Напишите название мероприятия.")
 

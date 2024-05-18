@@ -1011,7 +1011,7 @@ def main() -> None:
                          CallbackQueryHandler(select_event_button, pattern="^back#$"),
                          CallbackQueryHandler(set_theme_options)]
         },
-        fallbacks=[CommandHandler("cancel", cancel_join_team),
+        fallbacks=[CommandHandler("cancel", cancel_themes),
                    MessageHandler(filters.COMMAND, cancel_any)],
         allow_reentry=True)
     application.add_handler(manage_team_handler, group=5)

@@ -72,7 +72,7 @@ async def get_event_max_members(update: Update, context: ContextTypes.DEFAULT_TY
     if not reader.is_digit(members_amount):
         await update.message.reply_text("Введите число.")
         return EVENT_MAX_MEMBERS
-    context.user_data["members_amount"] = members_amount
+    context.user_data["members_amount"] = int(members_amount)
     await update.message.reply_text("Отправьте файл-таблицу с расширением .xlsx, содержащий описание тем мероприятия. "
                                     "Прикрепляю шаблон, в котором описаны инструкции по заполнению данного файла. "
                                     "Файл будет проверен, в случае обнаружения ошибок вы сможете отправить файл заново.")
@@ -899,7 +899,7 @@ async def delete_event(update: Update, context: ContextTypes.DEFAULT_TYPE) -> in
 
 
 async def cancel_delete_event(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
-    await update.message.reply_text("Удаление мероприятия удалено.")
+    await update.message.reply_text("Удаление мероприятия отменено.")
     await remove_buttons(context.chat_data)
 
     return ConversationHandler.END

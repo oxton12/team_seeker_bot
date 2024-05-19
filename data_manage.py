@@ -54,6 +54,7 @@ class Reader:
 
         if df.empty:
             errors.append(f"В файле отсутствуют данные.")
+            os.remove(file_url)
             return errors
 
         # проверка наличия заголовков
